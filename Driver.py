@@ -1,6 +1,6 @@
 import pywhatkit
 
-import contacts
+import contacts as contacts
 
 USER = 'Osaid'
 
@@ -21,7 +21,7 @@ def switcher(command, function):
     switch = {
         'update': update_file_name,
         'send': send,
-        2: 'get_contact',
+        'get_contact': get_contact,
         3: 'get_contacts_list',
         4: 'stand_by',
         5: 'exit'
@@ -30,12 +30,14 @@ def switcher(command, function):
 
 
 def update_file_name(filename):
-    print("updating the file name to {}!".format(filename))
+    print("updating the file name to {}!".format(" ".join(filename)))
 
 
-def send(contact, message):
-    print('sending > {} > to {}'.format(" ".join(message), contact))
+def send(info):
+    print('sending > {} > to {}'.format(" ".join(info[1:]), info[0]))
 
+def get_contact(info):
+    print(" ".join(r.get_contact(info[0])))
 
 r = contacts.Contacts('contacts.txt')
 
